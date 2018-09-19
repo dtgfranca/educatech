@@ -1,0 +1,68 @@
+<!--<ion-header no-border>
+  <ion-navbar transparent>
+  </ion-navbar>
+</ion-header>
+<ion-content fullscreen padding text-center>
+  <img class="logo" src="assets/img/logo/logo.png" />
+
+  <ion-segment  [(ngModel)]="type" color="segment">
+    <ion-segment-button value="login">
+      Entrar
+    </ion-segment-button>
+    <ion-segment-button value="register">
+      Registrar
+    </ion-segment-button>        
+  </ion-segment>
+  
+  <div [ngSwitch]="type">
+    <div *ngSwitchCase ="'login'">     
+        <ion-item color="light">
+          <ion-label  stacked>Usúario</ion-label>
+          <ion-input [(ngModel)]="aluno.email" type="email" placeholder="Digite o E-mail"></ion-input>
+        </ion-item>
+        <ion-item color="light">
+          <ion-label color="primary" stacked>Senha</ion-label>
+          <ion-input [(ngModel)]="aluno.senha"  type="password" placeholder="Senha"></ion-input>
+        </ion-item>  
+        <ion-item no-lines>
+           <a (click)="resetPassword()"  style="color:#9e6533" >
+              Esqueci a senha
+           </a>
+        </ion-item>     
+        <button ion-button full (click)="login(aluno)"color="segment">Entrar</button>       
+    </div>
+
+    <div *ngSwitchCase ="'register'">   
+      
+        <ion-item>
+            <ion-label color="primary" stacked>Nome</ion-label>
+            <ion-input [(ngModel)] ="aluno.nome" type="text" placeholder="Digie o nome"></ion-input>
+        </ion-item> 
+         <ion-item>
+              <ion-label color="primary" stacked>Telefone</ion-label>
+              <ion-input [(ngModel)] ="aluno.telefone" type="text" placeholder="Digite o telefone"></ion-input>
+          </ion-item>           
+          <ion-item>
+              <ion-label color="primary" stacked>Endereço</ion-label>
+              <ion-input [(ngModel)] ="aluno.endereco" type="text" placeholder="Digite o Endereço"></ion-input>
+          </ion-item> 
+        <ion-item color="light">
+            <ion-label  stacked>E-mail</ion-label>
+            <ion-input [(ngModel)]="aluno.email" type="email" placeholder="Digite o E-mail"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label color="primary" stacked>Senha</ion-label>
+            <ion-input [(ngModel)] ="aluno.password" type="password" placeholder="Senha"></ion-input>
+          </ion-item> 
+          <ion-item>
+              <ion-label color="primary" stacked>Confirme a Senha</ion-label>
+              <ion-input [(ngModel)] ="aluno.cnfPassword" type="password" placeholder="Confirma a Senha"></ion-input>
+          </ion-item>            
+          <button ion-button full color="segment" (click)="register(aluno)">Registrar</button>        
+    </div>
+
+  </div>
+
+
+  
+</ion-content> -->

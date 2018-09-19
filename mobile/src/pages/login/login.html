@@ -1,0 +1,78 @@
+<!--<login (retorno)="login($event)"></login>-->
+
+<ion-header no-border>
+    <ion-navbar transparent>
+    </ion-navbar>
+  </ion-header>
+  <ion-content fullscreen padding text-center>
+    <img class="logo" src="assets/img/logo/logo.png" />
+  
+    <ion-segment  [(ngModel)]="type" color="segment">
+      <ion-segment-button value="login">
+        Entrar
+      </ion-segment-button>
+      <ion-segment-button value="register">
+        Registrar
+      </ion-segment-button>        
+    </ion-segment>
+    
+    <div [ngSwitch]="type">
+      <div *ngSwitchCase ="'login'">     
+        <form [formGroup]="registroFormLogin">
+            <ion-item color="light">
+                <ion-label  stacked>Usúario</ion-label>
+                <ion-input  type="email"  [class.invalid]="!registroFormLogin.controls.email.valid && registroFormLogin.controls.email.dirty"formControlName="email" placeholder="Digite o E-mail"></ion-input>
+              </ion-item>
+              <ion-item no-lines *ngIf="!registroFormLogin.controls.email.valid && registroFormLogin.controls.email.dirty">
+                <p style="color:#ea6153">Digite um email válido.</p>
+            </ion-item>
+              <ion-item color="light">
+                <ion-label color="primary" stacked>Senha</ion-label>
+                <ion-input  type="password"  [class.invalid]="!registroFormLogin.controls.senha.valid && registroFormLogin.controls.senha.dirty"formControlName="senha" placeholder="Senha"></ion-input>
+              </ion-item>  
+              <ion-item no-lines *ngIf="!registroFormLogin.controls.senha.valid && registroFormLogin.controls.senha.dirty">
+                <p style="color:#ea6153">Digite a senha.</p>
+            </ion-item>
+              <ion-item no-lines>
+                 <a (click)="resetPassword()"  style="color:#9e6533" >
+                    Esqueci a senha
+                 </a>
+              </ion-item>     
+              <button ion-button full  [disabled]="!registroFormLogin.valid" (click)="login()"color="segment">Entrar</button>    
+        </form>   
+      </div>
+  
+      <div *ngSwitchCase ="'register'">   
+        
+          <ion-item>
+              <ion-label color="primary" stacked>Nome</ion-label>
+              <ion-input [(ngModel)] ="aluno.nome" type="text" placeholder="Digie o nome"></ion-input>
+          </ion-item> 
+           <ion-item>
+                <ion-label color="primary" stacked>Telefone</ion-label>
+                <ion-input [(ngModel)] ="aluno.telefone" type="text" placeholder="Digite o telefone"></ion-input>
+            </ion-item>           
+            <ion-item>
+                <ion-label color="primary" stacked>Endereço</ion-label>
+                <ion-input [(ngModel)] ="aluno.endereco" type="text" placeholder="Digite o Endereço"></ion-input>
+            </ion-item> 
+          <ion-item color="light">
+              <ion-label  stacked>E-mail</ion-label>
+              <ion-input [(ngModel)]="aluno.email" type="email" placeholder="Digite o E-mail"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label color="primary" stacked>Senha</ion-label>
+              <ion-input [(ngModel)] ="aluno.password" type="password" placeholder="Senha"></ion-input>
+            </ion-item> 
+            <ion-item>
+                <ion-label color="primary" stacked>Confirme a Senha</ion-label>
+                <ion-input [(ngModel)] ="aluno.cnfPassword" type="password" placeholder="Confirma a Senha"></ion-input>
+            </ion-item>            
+            <button ion-button full color="segment" (click)="register(aluno)">Registrar</button>        
+      </div>
+  
+    </div>
+  
+  
+    
+  </ion-content>

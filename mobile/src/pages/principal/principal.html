@@ -1,0 +1,42 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Cursos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+        <ion-searchbar (ionInput)="getItems($event)" placeholder="Digite o nome do curso"></ion-searchbar>
+    <ion-card>
+        <ion-card-header>
+            <strong>Engenharia de Software</strong>
+        </ion-card-header>
+        <ion-card-content>
+                O dinamismo do desenvolvimento e da evolução da área de Ciência da Computação ...
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+            <ion-card-header>
+               <strong>Advocacia Empresarial</strong>
+            </ion-card-header>
+            <ion-card-content>
+                    O dinamismo do desenvolvimento e da evolução da área de Ciência da Computação ...
+            </ion-card-content>
+    </ion-card>
+    <ion-card>
+            <ion-card-header>                    
+                   <strong>Arquitetura de software distribuído</strong> 
+            </ion-card-header>
+            <ion-card-content>
+                    O dinamismo do desenvolvimento e da evolução da área de Ciência da Computação ...
+            </ion-card-content>
+    </ion-card>
+
+</ion-content>
