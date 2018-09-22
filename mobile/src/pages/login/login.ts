@@ -1,6 +1,6 @@
 import { Aluno } from './../../model/user';
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, LoadingController, Loading} from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -14,7 +14,9 @@ export class LoginPage {
 
   text: string;
   type: string;
-  registroFormLogin : FormGroup
+  registroFormLogin : FormGroup;
+  loading : Loading;
+  mensagem: string ='';
   aluno = {} as Aluno;
 
   constructor(
@@ -22,7 +24,8 @@ export class LoginPage {
     public navParams: NavParams, 
 	private auth: AuthProvider,
 	private formBuilder: FormBuilder,
-	private events: Events
+    private events: Events,
+    private  loadingCtrl: LoadingController
     
   ) {
 	  this.registroFormLogin = formBuilder.group({
@@ -37,16 +40,25 @@ export class LoginPage {
 
   login(){  
     
+    this.mensagem ='';
+    this.mostraLoading();
     this.auth.login(this.registroFormLogin.value).subscribe( (data)=>{  
 	  let dados =  JSON.parse(JSON.stringify(data));  
 
 	  this.sessao(JSON.stringify(data)); 
 	  
 	  this.events.publish('usuario:criado', this.recuperaSessao().nome);
-	  
+	  this.fechaLoading();
       this.navCtrl.setRoot('PrincipalPage');
-    },err =>{		
-      console.log(err);
+    },err =>{
+        if(err == 401){
+            this.fechaLoading();
+            this.mensagem ="Usuário/senha não encontrado";
+        }else{
+            this.fechaLoading();
+            this.mensagem = "Houve um probelma, consulte o suporte";
+        }	
+      
     }) 
     
   }
@@ -61,5 +73,15 @@ export class LoginPage {
 	  if(localStorage.getItem('dados')){
 		  return JSON.parse(localStorage.getItem("dados"));
 	  }
+  }
+  mostraLoading(){
+      this.loading = this.loadingCtrl.create({
+          content:'Aguarde ...'
+      });
+      this.loading.present();
+  }
+
+  fechaLoading(){
+    this.loading.dismiss();
   }
 }

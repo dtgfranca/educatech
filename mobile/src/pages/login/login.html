@@ -33,6 +33,9 @@
               <ion-item no-lines *ngIf="!registroFormLogin.controls.senha.valid && registroFormLogin.controls.senha.dirty">
                 <p style="color:#ea6153">Digite a senha.</p>
             </ion-item>
+            <ion-item no-lines *ngIf=" mensagem !=''">
+              <p style="color:#ea6153">{{mensagem}}</p>
+          </ion-item>
               <ion-item no-lines>
                  <a (click)="resetPassword()"  style="color:#9e6533" >
                     Esqueci a senha

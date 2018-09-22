@@ -36,6 +36,7 @@ import { AuthProvider } from '../providers/auth/auth';
   entryComponents: [
     MyApp,
     
+    
   ],
   providers: [
     StatusBar,
